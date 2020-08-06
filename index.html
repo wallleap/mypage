@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/favicon.png" type="image/png" />
+  <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+  <title>wallleap</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body{
+      width: 100%;
+    }
+
+    body {
+      background-color: #ccc;
+      background: url("https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(1).jpg") no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .w {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .clearfix::after{
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .top-bar-wrapper {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #333;
+      position: fixed;
+      top: 0;
+      z-index: 99999;
+    }
+
+    .top-bar-wrapper a {
+      font-size: 12px;
+      color: #b0b0b0;
+      display: block;
+    }
+
+    .top-bar-wrapper a:hover {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .service{
+      width: 100%;
+    }
+    .service,
+    .top-bar li {
+      float: left;
+    }
+
+    .top-bar li{
+      height: 40px;
+      line-height: 40px;
+    }
+
+    .top-bar .line {
+      font-size: 12px;
+      color: #424242;
+      margin: 0 8px;
+      margin-top: -1px;
+    }
+
+    .wechat,
+    .official{
+      position: relative;
+    }
+
+    .wechat::after,
+    .official::after{
+      display: none;
+      content: '';
+      /* display: block; */
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+      border-top: none;
+      border-bottom-color: #fff;
+      position: absolute;
+      top: 32px;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .wechat .qrcode,
+    .official .qrcode{
+      display: none;
+      position: absolute;
+      left: -30px;
+      width: 124px;
+      height: 148px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+      line-height: 1;
+      text-align: center;
+    }
+
+    .app .qrcode {
+      left: -36px;
+    }
+
+    .wechat:hover .qrcode,
+    .official:hover .qrcode,
+    .wechat:hover::after,
+    .official:hover::after{
+      display: block;
+    }
+
+    .qrcode img {
+      width: 90px;
+      margin: 17px;
+      margin-bottom: 14px;
+    }
+
+    .qrcode span {
+      color: #000;
+    }
+
+    .top-control-wrap{
+      width: 100%;
+    }
+    .top-control{
+      position: relative;
+      right: 0;
+      top: 0;
+    }
+
+    .show-top-list, .hide-top-list{
+      position: absolute;
+      right: 0;
+      font-size: 24px;
+    }
+    .show-top-list{
+      color: #fff;
+      display: none;
+    }
+    .hide-top-list{
+      color: red;
+      display: none;
+    }
+
+
+    .info{
+      position: relative;
+      height: 200px;
+      margin: 80px auto;
+    }
+    .menu {
+      display: flex;
+      list-style: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #34495e;
+      border-radius: 5px;
+      line-height: 200px;
+    }
+
+    .menu-item {
+      width: 25%;
+      position: relative;
+      display: inline-block;
+      font-size: 15px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      transition: .3s;
+    }
+
+    .bg {
+      position: absolute;
+      height: 100%;
+      width: 25%;
+      z-index: -1;
+      border-radius: 5px;
+      top: 0;
+      background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+      background-size: 400%;
+      transition: .3s;
+      box-shadow: 0 0 10px rgba(18, 150, 219, .6)
+    }
+
+    .menu-item:hover {
+      font-weight: bold;
+      transform: scale(1.3);
+      animation: animate 8s linear infinite alternate;
+    }
+
+    @keyframes animate {
+      0% {
+        background-position: 0%;
+      }
+
+      50% {
+        background-position: 100%;
+      }
+
+      100% {
+        background-position: 0%;
+      }
+    }
+
+    .menu-item::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      z-index: -1;
+      background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+      border-radius: 40px;
+      background-size: 400%;
+      filter: blur(20px);
+      opacity: 0;
+      transition: 1s;
+    }
+
+    .menu-item:hover::before {
+      filter: blur(20px);
+      opacity: 1;
+      animation: animate 8s linear infinite;
+      /*注意动画名称统一*/
+    }
+
+    .menu-item:nth-child(2):hover~.bg {
+      left: 25%;
+    }
+
+    .menu-item:nth-child(3):hover~.bg {
+      left: 50%;
+    }
+
+    .menu-item:nth-child(4):hover~.bg {
+      left: 75%;
+    }
+
+    .links{
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .links-items{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: baseline;
+    }
+    
+    .links-item{
+      position: relative;
+      box-sizing: border-box;
+      min-width: 275px;
+      height: 90px;
+      border: 1px dotted #eee;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      transition: .2s;
+    }
+    .links-item > a{
+      min-width: 275px;
+      height: 90px;
+      color: #333;
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+    .links-item img{
+      float: left;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 10px;
+    }
+    .links-item .friend-info{
+      float: right;
+    }
+    .links-item h3.friend-title{
+      width: 190px;
+      font-size: 20px;
+      text-align: center;
+      margin: 10px 0;
+    }
+    .links-item .desc{
+      width: 190px;
+      font-size: 15px;
+      text-align: center;
+    }
+    .links-item::after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      z-index: -1;
+      transition: .5s;
+    }
+    .links-item:hover{
+      box-shadow: 0 0 30px rgba(255, 0, 0, .5);
+    }
+    .links-item:hover > a{
+      color: #fff;
+    }
+    .links-item:hover::after{
+      background-color: red;
+      border: 1px solid red;
+    }
+
+    .links-item:last-of-type{
+      background-color: skyblue;
+      overflow: hidden;
+      border: 1px solid white;
+    }
+    .links-item:last-of-type::before{
+      content: '';
+      position: absolute;
+      left: 70px;
+      top: -10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      background-color: white;
+      z-index: 1;
+    }
+    .links-item:last-of-type::after{
+      content: '';
+      position: absolute;
+      left: 70px;
+      bottom: 0px;
+      margin-top: 80px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      background-color: white;
+      z-index: 1;
+    }
+    .links-item:last-of-type:hover{
+      box-shadow: 0 0 50px rgba(135, 206, 235, .6);
+      transform: translate3d(0, -2px, 0);
+      background-color: rgba(135, 206, 235, .6);
+    }
+
+    .links-item.red{
+      border: 1px solid red;
+    }
+    .links-item.red::after{
+      transform-origin: 0 0;
+      transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+      background-color: red;
+      border: 1px solid red;
+      transform: scaleX(0);
+    }
+    .links-item.red:hover{
+      color: #fff;
+      box-shadow: 0 0 30px rgba(255, 0, 0, .5);
+    }
+    .links-item.red:hover::after{
+      transform: scaleX(1);
+    }
+    .links-item.blue{
+      border: 1px solid blue;
+    }
+    .links-item.blue::after{
+      transform-origin: 0 0;
+      transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+      background-color: blue;
+      border: 1px solid blue;
+      box-shadow: 0 0 30px rgba(0, 0, 255, .5);
+      transform: scaleY(0);
+    }
+    .links-item.blue:hover::after{
+      color: #fff;
+      transform: scaleY(1);
+    }
+    .links-item.colorful{
+      border: 1px solid #732643;
+    }
+    .links-item.colorful:hover{
+      color: #fff;
+      animation: colorful 1s linear infinite alternate;
+    }
+    @keyframes colorful {
+      0%{
+        box-shadow: 0 0 30px rgba(255, 0, 0, .5);
+        background: linear-gradient(90deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      10%{
+        box-shadow: 0 0 30px rgba(254, 240, 238, .5);
+        background: linear-gradient(60deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      20%{
+        box-shadow: 0 0 30px rgba(254, 30, 238, .5);
+        background: linear-gradient(30deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      30%{
+        box-shadow: 0 0 30px rgba(4, 240, 238, .5);
+        background: linear-gradient(10deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      40%{
+        box-shadow: 0 0 30px rgba(254, 240, 28, .5);
+        background: linear-gradient(20deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      50%{
+        box-shadow: 0 0 30px rgba(254, 40, 38, .5);
+        background: linear-gradient(40deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      60%{
+        box-shadow: 0 0 30px rgba(24, 20, 238, .5);
+        background: linear-gradient(70deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      70%{
+        box-shadow: 0 0 30px rgba(0, 240, 230, .5);
+        background: linear-gradient(100deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      80%{
+        box-shadow: 0 0 30px rgba(254, 20, 238, .5);
+        background: linear-gradient(120deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      90%{
+        box-shadow: 0 0 30px rgba(254, 240, 238, .5);
+        background: linear-gradient(80deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
+      }
+      100%{
+        background: linear-gradient(45deg, rgba(99, 151, 199, .4), rgba(252, 218, 69, .5));
+      }
+    }
+    .links-item.orange{
+      border: 1px solid orange;
+    }
+    .links-item.orange::after{
+      background-color: orange;
+      border: 1px solid orange;
+      transform: scale(0);
+      transition: .2s linear;
+    }
+    .links-item.orange:hover{
+      box-shadow: 0 0 30px rgba(255, 165, 0, .5);
+    }
+    .links-item.orange:hover::after{
+      transform: scale(1);
+    }
+    .links-item.lightred{
+      border: 1px solid rgb(252, 113, 110);
+    }
+    .links-item.lightred::after{
+      background-color: rgb(252, 113, 110);
+      border: 1px solid rgb(252, 113, 110);
+      width: 0;
+      height: 0;
+      transition: .2s linear;
+    }
+    .links-item.lightred:hover{
+      box-shadow: 0 0 30px rgba(252, 113, 110, .5);
+    }
+    .links-item.lightred:hover::after{
+      width: 100%;
+      height: 100%;
+    }
+
+    .comments{
+      box-sizing: border-box;
+      margin: 80px auto;
+      /* background: linear-gradient(rgba(255, 255, 255, .7), rgba(160, 107, 113, .5)); */
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+    #control{
+        position: fixed;
+        right: 30px;
+        bottom: 150px;
+        margin-top: -800px;
+        opacity: 0;
+        display: none;
+        transition: all .3s;
+      }
+      #control.active{
+        margin-top: 0;
+        opacity: 1;
+        display: block;
+      }
+      #control .toTop, #control .toggleDark{
+        background-color: #333;
+        color: #eee;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 30px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      body.dark #control .toTop, body.dark #control .toggleDark{
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+    .footer{
+      width: 100%;
+      box-sizing: border-box;
+      height: 200px;
+      background-color: #333333;
+      text-align: center;
+      font-size: 13px;
+      color: #eee;
+      padding: 30px;
+    }
+    .footer .busuanzi{
+      margin-top: 15px;
+    }
+
+    @media (max-width: 920px){
+      .line{
+        display: none;
+      }
+      .w{
+        width: 96%;
+      }
+      .top-bar-wrapper,.top-bar,.service{
+        display: -webkit-flex;
+        display: flex;
+      }
+      .top-bar{
+        margin-top: 48px;
+      }
+      .service{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 10px 0;
+      }
+      .service li{
+        width: 100%;
+        height: 24px;
+        line-height: 24px;
+      }
+      .service .wechat{
+        position: absolute;
+        bottom: 0;
+      }
+      .service .official{
+        position: absolute;
+        right: 100px;
+        bottom: 0;
+      }
+      .service li.hide{
+        height: 0;
+      }
+      .wechat .text, .official .text,
+      .service .wechat::after, .service .official::after{
+        display: none;
+      }
+      .wechat .qrcode{
+        display: block;
+        left: 0;
+        top: 0;
+      }
+      .official .qrcode{
+        display: block;
+        right: 0;
+        top: 0;
+      }
+
+      .top-control-wrap{
+        position: fixed;
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+        background-color: #000;
+      }
+      .top-control{
+        margin-right: 10px;
+      }
+      .show-top-list{
+        display: block;
+      }
+      .hide-top-list{
+        color: red;
+        display: none;
+      }
+      .top-bar{
+        display: none;
+      }
+      #control{
+        right: 10px;
+        bottom: 20px;
+      }
+      #control .toTop,
+      #control .toggleDark{
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 20px;
+      }
+    }
+
+    *::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    *::-webkit-scrollbar-thumb {
+      background: #49b1f5;
+    }
+    *::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    *::selection {
+      background: rgba(62, 179, 228, .5);
+      color: #f7f7f7;
+    }
+
+    @media (prefers-color-scheme: light) {
+      body {
+        /* background: #fff; */
+        background: url('https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(1).jpg');
+      }
+      .comments, .footer{
+        color: #333;
+        background-color: #f6f6f6;
+      }
+      h1,h2,h3{
+        color: #000;
+      }
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        /* background: #292929; */
+        background: url('https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(0).jpg') !important;
+      }
+      .comments, .footer{
+        color: #fbfbfb;
+        background-color: #424242;
+      }
+    }
+    body.dark {
+        background: url('https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(0).jpg') !important;
+      }
+      body.dark .comments,body.dark .footer{
+        color: #fbfbfb;
+        background-color: #424242;
+      }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="top-bar-wrapper">
+      <div class="top-control-wrap">
+        <div class="top-control">
+          <span class="show-top-list">
+            <i class="fas fa-bars"></i>
+          </span>
+          <span class="hide-top-list">
+            <i class="fas fa-times"></i>
+          </span>
+        </div>
+      </div>
+      <div class="top-bar w clearfix">
+        <ul class="service">
+          <li><a href="https://wallleap.github.io"><i class="fas fa-home"></i> Home</a></li>
+          <li class="line">|</li>
+          <li><a href="https://github.com/wallleap" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+          <li class="line">|</li>
+          <li><a href="https://space.bilibili.com/157360395/" target="_blank"><i class="fas fa-blind"></i> Bilibili</a>
+          </li>
+          <li class="line">|</li>
+          <li><a href="https://music.163.com/?from=infinity#/user/home?id=453867086" target="_blank"><i
+                class="fas fa-eraser"></i>
+              EaseNet</a></li>
+          <li class="line">|</li>
+          <li class="hide">
+            <a href="javascript:;" class="wechat">
+              <span class="text"><i class="fab fa-weixin"></i> WeChat</span>
+              <div class="qrcode">
+                <img src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/custom/wechat.jpg" alt="微信二维码">
+                <span>我的微信</span>
+              </div>
+            </a>
+          </li>
+          <li class="line">|</li>
+          <li><a href="tencent://message/?uin=990083804&Site=&Menu=yes"><i class="fab fa-qq"></i> QQ</a></li>
+          <li class="line">|</li>
+          <li><a href="mailto:15579576761@163.com"><i class="fas fa-envelope"></i> E-mail</a></li>
+          <li class="line">|</li>
+          <li><a href="javascript:;"><i class="fab fa-weibo"></i> 微博</a></li>
+          <li class="line">|</li>
+          <li class="hide">
+            <a href="javascript:;" class="official">
+              <span class="text">微信公众号</span>
+              <div class="qrcode">
+                <img src="https://cdn.jsdelivr.net/gh/wallleap/cdn@master/img/wechat/wallleap8cm.jpg" alt="公众号二维码">
+                <span>wallleap公众号</span>
+              </div>
+            </a>
+          </li>
+          <li class="line">|</li>
+          <li><a href="https://me.csdn.net/qq_36949103" target="_blank">CSDN</a></li>
+          <li class="line">|</li>
+          <li><a href="https://paypal.me/wallleap?locale.x=zh_XC" target="_blank">PayPal</a></li>
+          <li class="line">|</li>
+          <li><a href="http://i.pcbeta.com/space-uid-4856513.html" target="_blank">远景</a></li>
+          <li class="line">|</li>
+          <li><a href="https://gitee.com/wallleap" target="_blank">Gitee</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="info w">
+      <nav class="menu">
+        <a href="https://wallleap.github.io" class="menu-item">首页</a>
+        <a href="https://wallleap.cn" class="menu-item" target="_blank">博客</a>
+        <a href="https://blog.wallleap.cn/about.html" class="menu-item" target="_blank">关于</a>
+        <a href="#links" class="menu-item">友链</a>
+        <a href="#" class="bg"></a>
+        <a href="#" class="l-bg"></a>
+        <a href="#" class="r-bg"></a>
+        <a href="#" class="t-bg"></a>
+        <a href="#" class="b-bg"></a>
+      </nav>
+    </div>
+    <div class="links w" id="links">
+      <ul class="links-items">
+        <li class="links-item red">
+          <a href="https://yelog.org/"  target="_blank" title="https://yelog.org/">
+            <img src="https://yelog.org/img/avatar.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">叶落阁</h3>
+              <div class="desc">喜欢研究新兴技术和未来发展方向</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item blue">
+          <a href="https://www.zh66.club"  target="_blank" title="https://www.zh66.club">
+            <img src="https://cdn.jsdelivr.net/gh/Zevs6/CDN@3.0/img/avatar.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">皮皮家园</h3>
+              <div class="desc">让平凡的一天不再平凡</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item colorful">
+          <a href="https://leeyiding.com/"  target="_blank" title="https://leeyiding.com/">
+            <img src="https://q1.qlogo.cn/g?b=qq&nk=1843272640&s=640" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">LeeYD</h3>
+              <div class="desc">自动化专业，喜欢捣鼓单片机啥的。</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item orange">
+          <a href="https://jwmm.xyz/"  target="_blank" title="https://jwmm.xyz/">
+            <img src="https://cdn.jsdelivr.net/gh/xb2016/kratos-pjax@0.4.0/static/images/favicon.ico" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">喵喵喵~</h3>
+              <div class="desc">只会喵喵叫的业余前端佬-喵~</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item lightred">
+          <a href="https://cndrew.cn/"  target="_blank" title="https://cndrew.cn/">
+            <img src="https://cdn.jsdelivr.net/gh/drew233/cdn/dreww.webp" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">Uncle_drew</h3>
+              <div class="desc">Hand down,man down</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://yremp.live/"  target="_blank" title="https://yremp.live/">
+            <img src="https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/custom/head.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">Yremp</h3>
+              <div class="desc">流年，谁给过的倾城</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://immmmm.com/"  target="_blank" title="https://immmmm.com/">
+            <img src="https://gravatar.loli.net/avatar/ba83fa02fc4b2ba621514941307e21be?d=mp&v=1.3.10" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">木木木木木</h3>
+              <div class="desc">安心唠唠嗑，聊聊家常~</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://you.ci/"  target="_blank" title="https://you.ci/">
+            <img src="https://q1.qlogo.cn/g?b=qq&nk=2342341&s=100" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">有次博客</h3>
+              <div class="desc">有次鞭鞘陆续鸣，赭袍当殿万簪缨。</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://www.fezhu.top/"  target="_blank" title="https://www.fezhu.top/">
+            <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn/img/custom/avatar.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">Uncleacc</h3>
+              <div class="desc">一只努力学习的蒟蒻仔</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://cungudafa.top"  target="_blank" title="https://cungudafa.top">
+            <img src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/custom/cungudafa.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">cungudafa</h3>
+              <div class="desc">一个学习记录者</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://nateshao.gitee.io/"  target="_blank" title="https://nateshao.gitee.io/">
+            <img src="https://nateshao.gitee.io/img/avatar.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">千羽的编程时光</h3>
+              <div class="desc">记录编程时光</div>
+            </div>
+          </a>
+        </li>
+        
+        <li class="links-item">
+          <a href="#" title="等待收录中……">
+            <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2501266080,3160664158&fm=26&gp=0.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">待续……</h3>
+              <div class="desc">如果需要加友链，请留言呐~</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="comments w">
+      <div id="vcomments"></div>
+    </div>
+    <div id="control">
+      <div class="toTop"><i class="fas fa-arrow-up"></i></div>
+      <div class="toggleDark"><i class="fas fa-sun"></i></div>
+    </div>
+    <div class="footer">
+      <div class="busuanzi w">
+        <span id="busuanzi_container_site_pv">
+          本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </span>
+      </div>
+    </div>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script type="text/javascript">
+    loadComments()
+    function loadComments() {
+      if (typeof Valine === 'undefined') {
+        var getScript = (options) => {
+          var script = document.createElement('script')
+          script.defer = true
+          script.crossOrigin = 'anonymous'
+          Object.keys(options).forEach((key) => {
+              script[key] = options[key]
+          })
+          document.body.appendChild(script)
+        };
+        getScript({
+          src: 'https://cdn.jsdelivr.net/gh/wallleap/Valine@latest/dist/Valine.min.js',
+          onload: () => {
+            newValine()
+          }
+        });
+      } else {
+        newValine()
+      }
+    }
+    function newValine() {
+      new Valine({
+        el: '#vcomments',
+        appId: '0ie6SefKTUrVL8R7D2069INq-gzGzoHsz',
+        appKey: '13SrC6Lb0MH7md7J0B9LPfcU',
+        avatar: 'mp',
+        pageSize: false,
+        enableQQ: true,
+        placeholder: '欢迎留言呐~',
+        tagMeta: ["博主", "小伙伴", "访客"],
+        master: ["be1ccdcf025a92b98a92e331e1b3662a","71a6d66af40d1eed82fca4005e2dbd59"],
+        friends: ["89a128b81318251695f3c5546755eb0b"],
+        metaPlaceholder: {"nick":"昵称/QQ号","mail":"邮箱(必填)"},
+        verify: true
+      })
+    }
+    window.addEventListener('scroll', function () {
+      let scroll = document.querySelector('#control')
+      scroll.classList.toggle("active", window.scrollY > 500)
+    })
+    window.onload = function(){
+      let showList = document.querySelector('.show-top-list')
+      let hideList = document.querySelector('.hide-top-list')
+      let topBar = document.querySelector('.top-bar')
+
+      showList.onclick = function(){
+        showList.style.display = 'none'
+        hideList.style.display = 'block'
+        topBar.style.display = 'block'
+      }
+      hideList.onclick = function(){
+        showList.style.display = 'block'
+        hideList.style.display = 'none'
+        topBar.style.display = 'none'
+      }
+      console.log("                _ _ _                  \n\
+               | | | |                 \n\
+ __      ____ _| | | | ___  __ _ _ __  \n\
+ \\ \\ /\\ / / _` | | | |/ _ \\/ _` | '_ \\ \n\
+  \\ V  V / (_| | | | |  __/ (_| | |_) |\n\
+   \\_/\\_/ \\__,_|_|_|_|\\___|\\__,_| .__/ \n\
+                                | |    \n\
+                                |_|    \n\
+      ")
+    }
+    function toggleDark() {
+      let flag = true
+      let body = document.body
+      let btnDark = document.querySelector('.toggleDark>i')
+      btnDark.onclick = function () {
+          if (flag) {
+              addClass(body, 'dark')
+              removeClass(btnDark, 'fa-sun')
+              addClass(btnDark, 'fa-moon')
+          } else {
+              removeClass(body, 'dark')
+              addClass(btnDark, 'fa-sun')
+              removeClass(btnDark, 'fa-moon')
+          }
+          flag = !flag
+      }
+    }
+    toggleDark()
+    // 点击按钮 回到顶部
+    document.querySelector('.toTop').onclick = function () {
+        var distance = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+        var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft
+        var time = 500
+        var intervalTime = 50
+        var itemDistance = distance / (time / intervalTime)
+        var intervalId = setInterval(function () {
+            distance -= itemDistance
+            if (distance <= 0) {
+                distance = 0
+                clearInterval(intervalId)
+            }
+            document.documentElement.scrollTop = document.body.scrollTop = distance
+        }, intervalTime)
+    }
+    /* 类的操作的函数——4个
+    * toggleClass(box1, "类名");
+    */
+    function addClass(obj, cn){
+        if(!hasClass(obj, cn)){
+            obj.className += " "+cn;
+        }
+    }
+    function hasClass(obj, cn){
+        var reg = new RegExp("\\b"+cn+"\\b");
+        return reg.test(obj.className);
+    }
+    function removeClass(obj, cn){
+        var reg = new RegExp("\\b"+cn+"\\b");
+        obj.className = obj.className.replace(reg, "");
+    }
+    function toggleClass(obj, cn){
+        if(hasClass(obj, cn)){
+            removeClass(obj, cn);
+        }else{
+            addClass(obj, cn);
+        }
+    }
+  </script>
+</body>
+</html>
