@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +14,18 @@
       padding: 0;
     }
 
-    html, body{
+    html,
+    body {
       width: 100%;
     }
 
-    body {
-      background-color: #ccc;
+    .page-bg {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: -99999;
+      width: 100vw;
+      height: 100vh;
       background: url("https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(1).jpg") no-repeat;
       background-position: center center;
       background-attachment: fixed;
@@ -33,7 +40,7 @@
       margin: 0 auto;
     }
 
-    .clearfix::after{
+    .clearfix::after {
       content: '';
       display: table;
       clear: both;
@@ -63,15 +70,16 @@
       color: #fff;
     }
 
-    .service{
+    .service {
       width: 100%;
     }
+
     .service,
     .top-bar li {
       float: left;
     }
 
-    .top-bar li{
+    .top-bar li {
       height: 40px;
       line-height: 40px;
     }
@@ -84,12 +92,12 @@
     }
 
     .wechat,
-    .official{
+    .official {
       position: relative;
     }
 
     .wechat::after,
-    .official::after{
+    .official::after {
       display: none;
       content: '';
       /* display: block; */
@@ -106,7 +114,7 @@
     }
 
     .wechat .qrcode,
-    .official .qrcode{
+    .official .qrcode {
       display: none;
       position: absolute;
       left: -30px;
@@ -125,7 +133,7 @@
     .wechat:hover .qrcode,
     .official:hover .qrcode,
     .wechat:hover::after,
-    .official:hover::after{
+    .official:hover::after {
       display: block;
     }
 
@@ -139,35 +147,40 @@
       color: #000;
     }
 
-    .top-control-wrap{
+    .top-control-wrap {
       width: 100%;
     }
-    .top-control{
+
+    .top-control {
       position: relative;
       right: 0;
       top: 0;
     }
 
-    .show-top-list, .hide-top-list{
+    .show-top-list,
+    .hide-top-list {
       position: absolute;
       right: 0;
       font-size: 24px;
     }
-    .show-top-list{
+
+    .show-top-list {
       color: #fff;
       display: none;
     }
-    .hide-top-list{
+
+    .hide-top-list {
       color: red;
       display: none;
     }
 
 
-    .info{
+    .info {
       position: relative;
       height: 200px;
       margin: 80px auto;
     }
+
     .menu {
       display: flex;
       list-style: none;
@@ -246,7 +259,6 @@
       filter: blur(20px);
       opacity: 1;
       animation: animate 8s linear infinite;
-      /*注意动画名称统一*/
     }
 
     .menu-item:nth-child(2):hover~.bg {
@@ -261,19 +273,20 @@
       left: 75%;
     }
 
-    .links{
+    .links {
       padding: 20px;
       box-sizing: border-box;
     }
-    .links-items{
+
+    .links-items {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-around;
       align-items: baseline;
     }
-    
-    .links-item{
+
+    .links-item {
       position: relative;
       box-sizing: border-box;
       min-width: 275px;
@@ -284,35 +297,49 @@
       border-radius: 10px;
       transition: .2s;
     }
-    .links-item > a{
+
+    .links-item>a {
       min-width: 275px;
       height: 90px;
       color: #333;
       flex-grow: 1;
       flex-shrink: 1;
     }
-    .links-item img{
+
+    .links-item img {
       float: left;
       width: 60px;
       height: 60px;
       border-radius: 50%;
       margin: 10px;
+      transition: .6s;
     }
-    .links-item .friend-info{
+
+    .links-item:hover img.avatar {
+      transform: rotate(360deg);
+    }
+
+    .links-item .friend-info {
       float: right;
     }
-    .links-item h3.friend-title{
+
+    .links-item h3.friend-title {
       width: 190px;
       font-size: 20px;
       text-align: center;
       margin: 10px 0;
     }
-    .links-item .desc{
+
+    .links-item .desc {
       width: 190px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       font-size: 15px;
       text-align: center;
     }
-    .links-item::after{
+
+    .links-item::after {
       content: '';
       position: absolute;
       left: 0;
@@ -323,23 +350,27 @@
       z-index: -1;
       transition: .5s;
     }
-    .links-item:hover{
+
+    .links-item:hover {
       box-shadow: 0 0 30px rgba(255, 0, 0, .5);
     }
-    .links-item:hover > a{
+
+    .links-item:hover>a {
       color: #fff;
     }
-    .links-item:hover::after{
+
+    .links-item:hover::after {
       background-color: red;
       border: 1px solid red;
     }
 
-    .links-item:last-of-type{
+    .links-item:last-of-type {
       background-color: skyblue;
       overflow: hidden;
       border: 1px solid white;
     }
-    .links-item:last-of-type::before{
+
+    .links-item:last-of-type::before {
       content: '';
       position: absolute;
       left: 70px;
@@ -351,7 +382,8 @@
       background-color: white;
       z-index: 1;
     }
-    .links-item:last-of-type::after{
+
+    .links-item:last-of-type::after {
       content: '';
       position: absolute;
       left: 70px;
@@ -364,33 +396,39 @@
       background-color: white;
       z-index: 1;
     }
-    .links-item:last-of-type:hover{
+
+    .links-item:last-of-type:hover {
       box-shadow: 0 0 50px rgba(135, 206, 235, .6);
       transform: translate3d(0, -2px, 0);
       background-color: rgba(135, 206, 235, .6);
     }
 
-    .links-item.red{
+    .links-item.red {
       border: 1px solid red;
     }
-    .links-item.red::after{
+
+    .links-item.red::after {
       transform-origin: 0 0;
       transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
       background-color: red;
       border: 1px solid red;
       transform: scaleX(0);
     }
-    .links-item.red:hover{
+
+    .links-item.red:hover {
       color: #fff;
       box-shadow: 0 0 30px rgba(255, 0, 0, .5);
     }
-    .links-item.red:hover::after{
+
+    .links-item.red:hover::after {
       transform: scaleX(1);
     }
-    .links-item.blue{
+
+    .links-item.blue {
       border: 1px solid blue;
     }
-    .links-item.blue::after{
+
+    .links-item.blue::after {
       transform-origin: 0 0;
       transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
       background-color: blue;
@@ -398,96 +436,118 @@
       box-shadow: 0 0 30px rgba(0, 0, 255, .5);
       transform: scaleY(0);
     }
-    .links-item.blue:hover::after{
+
+    .links-item.blue:hover::after {
       color: #fff;
       transform: scaleY(1);
     }
-    .links-item.colorful{
+
+    .links-item.colorful {
       border: 1px solid #732643;
     }
-    .links-item.colorful:hover{
+
+    .links-item.colorful:hover {
       color: #fff;
       animation: colorful 1s linear infinite alternate;
     }
+
     @keyframes colorful {
-      0%{
+      0% {
         box-shadow: 0 0 30px rgba(255, 0, 0, .5);
         background: linear-gradient(90deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      10%{
+
+      10% {
         box-shadow: 0 0 30px rgba(254, 240, 238, .5);
         background: linear-gradient(60deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      20%{
+
+      20% {
         box-shadow: 0 0 30px rgba(254, 30, 238, .5);
         background: linear-gradient(30deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      30%{
+
+      30% {
         box-shadow: 0 0 30px rgba(4, 240, 238, .5);
         background: linear-gradient(10deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      40%{
+
+      40% {
         box-shadow: 0 0 30px rgba(254, 240, 28, .5);
         background: linear-gradient(20deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      50%{
+
+      50% {
         box-shadow: 0 0 30px rgba(254, 40, 38, .5);
         background: linear-gradient(40deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      60%{
+
+      60% {
         box-shadow: 0 0 30px rgba(24, 20, 238, .5);
         background: linear-gradient(70deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      70%{
+
+      70% {
         box-shadow: 0 0 30px rgba(0, 240, 230, .5);
         background: linear-gradient(100deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      80%{
+
+      80% {
         box-shadow: 0 0 30px rgba(254, 20, 238, .5);
         background: linear-gradient(120deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      90%{
+
+      90% {
         box-shadow: 0 0 30px rgba(254, 240, 238, .5);
         background: linear-gradient(80deg, rgba(254, 240, 238, .5), rgba(99, 151, 199, .6));
       }
-      100%{
+
+      100% {
         background: linear-gradient(45deg, rgba(99, 151, 199, .4), rgba(252, 218, 69, .5));
       }
     }
-    .links-item.orange{
+
+    .links-item.orange {
       border: 1px solid orange;
     }
-    .links-item.orange::after{
+
+    .links-item.orange::after {
       background-color: orange;
       border: 1px solid orange;
       transform: scale(0);
       transition: .2s linear;
     }
-    .links-item.orange:hover{
+
+    .links-item.orange:hover {
       box-shadow: 0 0 30px rgba(255, 165, 0, .5);
     }
-    .links-item.orange:hover::after{
+
+    .links-item.orange:hover::after {
       transform: scale(1);
     }
-    .links-item.lightred{
+
+    .links-item.lightred {
       border: 1px solid rgb(252, 113, 110);
     }
-    .links-item.lightred::after{
+
+    .links-item.lightred::after {
       background-color: rgb(252, 113, 110);
       border: 1px solid rgb(252, 113, 110);
       width: 0;
       height: 0;
       transition: .2s linear;
     }
-    .links-item.lightred:hover{
+
+    .links-item.lightred:hover {
       box-shadow: 0 0 30px rgba(252, 113, 110, .5);
     }
-    .links-item.lightred:hover::after{
+
+    .links-item.lightred:hover::after {
       width: 100%;
       height: 100%;
     }
 
-    .comments{
+    .comments {
       box-sizing: border-box;
       margin: 80px auto;
       /* background: linear-gradient(rgba(255, 255, 255, .7), rgba(160, 107, 113, .5)); */
@@ -496,37 +556,42 @@
       padding: 20px;
     }
 
-    #control{
-        position: fixed;
-        right: 30px;
-        bottom: 150px;
-        margin-top: -800px;
-        opacity: 0;
-        display: none;
-        transition: all .3s;
-      }
-      #control.active{
-        margin-top: 0;
-        opacity: 1;
-        display: block;
-      }
-      #control .toTop, #control .toggleDark{
-        background-color: #333;
-        color: #eee;
-        width: 50px;
-        height: 50px;
-        text-align: center;
-        line-height: 50px;
-        font-size: 30px;
-        margin-bottom: 10px;
-        cursor: pointer;
-      }
-      body.dark #control .toTop, body.dark #control .toggleDark{
-        background-color: #f4f4f4;
-        color: #333;
-      }
+    #control {
+      position: fixed;
+      right: 30px;
+      bottom: 150px;
+      margin-top: -800px;
+      opacity: 0;
+      display: none;
+      transition: all .3s;
+    }
 
-    .footer{
+    #control.active {
+      margin-top: 0;
+      opacity: 1;
+      display: block;
+    }
+
+    #control .toTop,
+    #control .toggleDark {
+      background-color: #333;
+      color: #eee;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 30px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    body.dark #control .toTop,
+    body.dark #control .toggleDark {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .footer {
       width: 100%;
       box-sizing: border-box;
       height: 200px;
@@ -536,89 +601,111 @@
       color: #eee;
       padding: 30px;
     }
-    .footer .busuanzi{
+
+    .footer .busuanzi {
       margin-top: 15px;
     }
 
-    @media (max-width: 920px){
-      .line{
+    @media (max-width: 920px) {
+      .line {
         display: none;
       }
-      .w{
+
+      .w {
         width: 96%;
       }
-      .top-bar-wrapper,.top-bar,.service{
+
+      .top-bar-wrapper,
+      .top-bar,
+      .service {
         display: -webkit-flex;
         display: flex;
       }
-      .top-bar{
+
+      .top-bar {
         margin-top: 48px;
       }
-      .service{
+
+      .service {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
         padding: 10px 0;
       }
-      .service li{
+
+      .service li {
         width: 100%;
         height: 24px;
         line-height: 24px;
       }
-      .service .wechat{
+
+      .service .wechat {
         position: absolute;
         bottom: 0;
       }
-      .service .official{
+
+      .service .official {
         position: absolute;
         right: 100px;
         bottom: 0;
       }
-      .service li.hide{
+
+      .service li.hide {
         height: 0;
       }
-      .wechat .text, .official .text,
-      .service .wechat::after, .service .official::after{
+
+      .wechat .text,
+      .official .text,
+      .service .wechat::after,
+      .service .official::after {
         display: none;
       }
-      .wechat .qrcode{
+
+      .wechat .qrcode {
         display: block;
         left: 0;
         top: 0;
       }
-      .official .qrcode{
+
+      .official .qrcode {
         display: block;
         right: 0;
         top: 0;
       }
 
-      .top-control-wrap{
+      .top-control-wrap {
         position: fixed;
         width: 100%;
         height: 48px;
         line-height: 48px;
         background-color: #000;
       }
-      .top-control{
+
+      .top-control {
         margin-right: 10px;
       }
-      .show-top-list{
+
+      .show-top-list {
         display: block;
       }
-      .hide-top-list{
+
+      .hide-top-list {
         color: red;
         display: none;
       }
-      .top-bar{
+
+      .top-bar {
         display: none;
       }
-      #control{
+
+      #control {
         right: 10px;
         bottom: 20px;
       }
+
       #control .toTop,
-      #control .toggleDark{
+      #control .toggleDark {
         width: 25px;
         height: 25px;
         line-height: 25px;
@@ -630,50 +717,66 @@
       width: 8px;
       height: 8px;
     }
+
     *::-webkit-scrollbar-thumb {
       background: #49b1f5;
     }
+
     *::-webkit-scrollbar-track {
       background-color: transparent;
     }
+
     *::selection {
       background: rgba(62, 179, 228, .5);
       color: #f7f7f7;
     }
 
     @media (prefers-color-scheme: light) {
-      body {
+      .page-bg {
         /* background: #fff; */
         background: url('https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(1).jpg');
       }
-      .comments, .footer{
+
+      .comments,
+      .footer {
         color: #333;
         background-color: #f6f6f6;
       }
-      h1,h2,h3{
+
+      h1,
+      h2,
+      h3 {
         color: #000;
       }
     }
+
     @media (prefers-color-scheme: dark) {
-      body {
+      .page-bg {
         /* background: #292929; */
         background: url('https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(0).jpg') !important;
       }
-      .comments, .footer{
+
+      .comments,
+      .footer {
         color: #fbfbfb;
         background-color: #424242;
       }
     }
-    body.dark {
-        background: url('https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(0).jpg') !important;
-      }
-      body.dark .comments,body.dark .footer{
-        color: #fbfbfb;
-        background-color: #424242;
-      }
+
+    body.dark .page-bg {
+      background: url('https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/img/cover/(0).jpg') !important;
+    }
+
+    body.dark .comments,
+    body.dark .footer {
+      color: #fbfbfb;
+      background-color: #424242;
+    }
   </style>
 </head>
+
 <body>
+  <div class="page-bg"></div>
   <div class="main">
     <div class="top-bar-wrapper">
       <div class="top-control-wrap">
@@ -751,7 +854,7 @@
     <div class="links w" id="links">
       <ul class="links-items">
         <li class="links-item red">
-          <a href="https://yelog.org/"  target="_blank" title="https://yelog.org/">
+          <a href="https://yelog.org/" target="_blank" title="https://yelog.org/">
             <img src="https://yelog.org/img/avatar.jpg" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">叶落阁</h3>
@@ -760,7 +863,7 @@
           </a>
         </li>
         <li class="links-item blue">
-          <a href="https://www.zh66.club"  target="_blank" title="https://www.zh66.club">
+          <a href="https://www.zh66.club" target="_blank" title="https://www.zh66.club">
             <img src="https://cdn.jsdelivr.net/gh/Zevs6/CDN@3.0/img/avatar.jpg" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">皮皮家园</h3>
@@ -769,7 +872,7 @@
           </a>
         </li>
         <li class="links-item colorful">
-          <a href="https://leeyiding.com/"  target="_blank" title="https://leeyiding.com/">
+          <a href="https://leeyiding.com/" target="_blank" title="https://leeyiding.com/">
             <img src="https://q1.qlogo.cn/g?b=qq&nk=1843272640&s=640" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">LeeYD</h3>
@@ -778,8 +881,9 @@
           </a>
         </li>
         <li class="links-item orange">
-          <a href="https://jwmm.xyz/"  target="_blank" title="https://jwmm.xyz/">
-            <img src="https://cdn.jsdelivr.net/gh/xb2016/kratos-pjax@0.4.0/static/images/favicon.ico" alt="朋友头像" class="avatar">
+          <a href="https://jwmm.xyz/" target="_blank" title="https://jwmm.xyz/">
+            <img src="https://cdn.jsdelivr.net/gh/xb2016/kratos-pjax@0.4.0/static/images/favicon.ico" alt="朋友头像"
+              class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">喵喵喵~</h3>
               <div class="desc">只会喵喵叫的业余前端佬-喵~</div>
@@ -787,7 +891,7 @@
           </a>
         </li>
         <li class="links-item lightred">
-          <a href="https://cndrew.cn/"  target="_blank" title="https://cndrew.cn/">
+          <a href="https://cndrew.cn/" target="_blank" title="https://cndrew.cn/">
             <img src="https://cdn.jsdelivr.net/gh/drew233/cdn/dreww.webp" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">Uncle_drew</h3>
@@ -796,7 +900,7 @@
           </a>
         </li>
         <li class="links-item">
-          <a href="https://yremp.live/"  target="_blank" title="https://yremp.live/">
+          <a href="https://yremp.live/" target="_blank" title="https://yremp.live/">
             <img src="https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/custom/head.jpg" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">Yremp</h3>
@@ -805,8 +909,9 @@
           </a>
         </li>
         <li class="links-item">
-          <a href="https://immmmm.com/"  target="_blank" title="https://immmmm.com/">
-            <img src="https://gravatar.loli.net/avatar/ba83fa02fc4b2ba621514941307e21be?d=mp&v=1.3.10" alt="朋友头像" class="avatar">
+          <a href="https://immmmm.com/" target="_blank" title="https://immmmm.com/">
+            <img src="https://gravatar.loli.net/avatar/ba83fa02fc4b2ba621514941307e21be?d=mp&v=1.3.10" alt="朋友头像"
+              class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">木木木木木</h3>
               <div class="desc">安心唠唠嗑，聊聊家常~</div>
@@ -814,7 +919,7 @@
           </a>
         </li>
         <li class="links-item">
-          <a href="https://you.ci/"  target="_blank" title="https://you.ci/">
+          <a href="https://you.ci/" target="_blank" title="https://you.ci/">
             <img src="https://q1.qlogo.cn/g?b=qq&nk=2342341&s=100" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">有次博客</h3>
@@ -823,7 +928,7 @@
           </a>
         </li>
         <li class="links-item">
-          <a href="https://www.fezhu.top/"  target="_blank" title="https://www.fezhu.top/">
+          <a href="https://www.fezhu.top/" target="_blank" title="https://www.fezhu.top/">
             <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn/img/custom/avatar.jpg" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">Uncleacc</h3>
@@ -832,7 +937,7 @@
           </a>
         </li>
         <li class="links-item">
-          <a href="https://cungudafa.top"  target="_blank" title="https://cungudafa.top">
+          <a href="https://cungudafa.top" target="_blank" title="https://cungudafa.top">
             <img src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/custom/cungudafa.jpg" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">cungudafa</h3>
@@ -841,7 +946,7 @@
           </a>
         </li>
         <li class="links-item">
-          <a href="https://nateshao.gitee.io/"  target="_blank" title="https://nateshao.gitee.io/">
+          <a href="https://nateshao.gitee.io/" target="_blank" title="https://nateshao.gitee.io/">
             <img src="https://nateshao.gitee.io/img/avatar.jpg" alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">千羽的编程时光</h3>
@@ -849,10 +954,38 @@
             </div>
           </a>
         </li>
-        
+        <li class="links-item">
+          <a href="https://chanshiyu.com/" target="_blank" title="https://nateshao.gitee.io/">
+            <img src="https://cdn.jsdelivr.net/gh/chanshiyucx/yoi/blog/avatar.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">蝉时雨</h3>
+              <div class="desc">蝉鸣如雨，花宵道中</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://www.antmoe.com/" target="_blank" title="https://nateshao.gitee.io/">
+            <img src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/avatar.jpg" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">小康博客</h3>
+              <div class="desc">一个收藏回忆与分享技术的地方！</div>
+            </div>
+          </a>
+        </li>
+        <li class="links-item">
+          <a href="https://www.lete114.top/" target="_blank" title="https://nateshao.gitee.io/">
+            <img src="https://www.lete114.top/img/avatar.png" alt="朋友头像" class="avatar">
+            <div class="friend-info">
+              <h3 class="friend-title">Lete乐特</h3>
+              <div class="desc">人生只有一次，大胆的生活！！</div>
+            </div>
+          </a>
+        </li>
+
         <li class="links-item">
           <a href="#" title="等待收录中……">
-            <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2501266080,3160664158&fm=26&gp=0.jpg" alt="朋友头像" class="avatar">
+            <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2501266080,3160664158&fm=26&gp=0.jpg"
+              alt="朋友头像" class="avatar">
             <div class="friend-info">
               <h3 class="friend-title">待续……</h3>
               <div class="desc">如果需要加友链，请留言呐~</div>
@@ -887,7 +1020,7 @@
           script.defer = true
           script.crossOrigin = 'anonymous'
           Object.keys(options).forEach((key) => {
-              script[key] = options[key]
+            script[key] = options[key]
           })
           document.body.appendChild(script)
         };
@@ -911,9 +1044,9 @@
         enableQQ: true,
         placeholder: '欢迎留言呐~',
         tagMeta: ["博主", "小伙伴", "访客"],
-        master: ["be1ccdcf025a92b98a92e331e1b3662a","71a6d66af40d1eed82fca4005e2dbd59"],
+        master: ["be1ccdcf025a92b98a92e331e1b3662a", "71a6d66af40d1eed82fca4005e2dbd59"],
         friends: ["89a128b81318251695f3c5546755eb0b"],
-        metaPlaceholder: {"nick":"昵称/QQ号","mail":"邮箱(必填)"},
+        metaPlaceholder: { "nick": "昵称/QQ号", "mail": "邮箱(必填)" },
         verify: true
       })
     }
@@ -921,17 +1054,17 @@
       let scroll = document.querySelector('#control')
       scroll.classList.toggle("active", window.scrollY > 500)
     })
-    window.onload = function(){
+    window.onload = function () {
       let showList = document.querySelector('.show-top-list')
       let hideList = document.querySelector('.hide-top-list')
       let topBar = document.querySelector('.top-bar')
 
-      showList.onclick = function(){
+      showList.onclick = function () {
         showList.style.display = 'none'
         hideList.style.display = 'block'
         topBar.style.display = 'block'
       }
-      hideList.onclick = function(){
+      hideList.onclick = function () {
         showList.style.display = 'block'
         hideList.style.display = 'none'
         topBar.style.display = 'none'
@@ -951,58 +1084,59 @@
       let body = document.body
       let btnDark = document.querySelector('.toggleDark>i')
       btnDark.onclick = function () {
-          if (flag) {
-              addClass(body, 'dark')
-              removeClass(btnDark, 'fa-sun')
-              addClass(btnDark, 'fa-moon')
-          } else {
-              removeClass(body, 'dark')
-              addClass(btnDark, 'fa-sun')
-              removeClass(btnDark, 'fa-moon')
-          }
-          flag = !flag
+        if (flag) {
+          addClass(body, 'dark')
+          removeClass(btnDark, 'fa-sun')
+          addClass(btnDark, 'fa-moon')
+        } else {
+          removeClass(body, 'dark')
+          addClass(btnDark, 'fa-sun')
+          removeClass(btnDark, 'fa-moon')
+        }
+        flag = !flag
       }
     }
     toggleDark()
     // 点击按钮 回到顶部
     document.querySelector('.toTop').onclick = function () {
-        var distance = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
-        var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft
-        var time = 500
-        var intervalTime = 50
-        var itemDistance = distance / (time / intervalTime)
-        var intervalId = setInterval(function () {
-            distance -= itemDistance
-            if (distance <= 0) {
-                distance = 0
-                clearInterval(intervalId)
-            }
-            document.documentElement.scrollTop = document.body.scrollTop = distance
-        }, intervalTime)
+      var distance = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+      var scrollLeft = document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft
+      var time = 500
+      var intervalTime = 50
+      var itemDistance = distance / (time / intervalTime)
+      var intervalId = setInterval(function () {
+        distance -= itemDistance
+        if (distance <= 0) {
+          distance = 0
+          clearInterval(intervalId)
+        }
+        document.documentElement.scrollTop = document.body.scrollTop = distance
+      }, intervalTime)
     }
     /* 类的操作的函数——4个
     * toggleClass(box1, "类名");
     */
-    function addClass(obj, cn){
-        if(!hasClass(obj, cn)){
-            obj.className += " "+cn;
-        }
+    function addClass(obj, cn) {
+      if (!hasClass(obj, cn)) {
+        obj.className += " " + cn;
+      }
     }
-    function hasClass(obj, cn){
-        var reg = new RegExp("\\b"+cn+"\\b");
-        return reg.test(obj.className);
+    function hasClass(obj, cn) {
+      var reg = new RegExp("\\b" + cn + "\\b");
+      return reg.test(obj.className);
     }
-    function removeClass(obj, cn){
-        var reg = new RegExp("\\b"+cn+"\\b");
-        obj.className = obj.className.replace(reg, "");
+    function removeClass(obj, cn) {
+      var reg = new RegExp("\\b" + cn + "\\b");
+      obj.className = obj.className.replace(reg, "");
     }
-    function toggleClass(obj, cn){
-        if(hasClass(obj, cn)){
-            removeClass(obj, cn);
-        }else{
-            addClass(obj, cn);
-        }
+    function toggleClass(obj, cn) {
+      if (hasClass(obj, cn)) {
+        removeClass(obj, cn);
+      } else {
+        addClass(obj, cn);
+      }
     }
   </script>
 </body>
+
 </html>
